@@ -139,16 +139,6 @@ scripts/dev.sh                            # Podman-focused dev helpers
 
 ---
 
-## HACS & GitHub metadata
-
-[HACS validation](https://hacs.xyz/docs/publish/include#check-repository) expects the GitHub repository itself to have a **short description** and **topics** (set under **Settings → General** on GitHub — they cannot be committed as files). Without them, the HACS workflow reports validation failures even when the integration code is fine.
-
-Suggested topics: `home-assistant`, `homeassistant`, `hacs`, `integration`, `transport-victoria`, `melbourne`, `gtfs`.
-
-If you fork or rename the repo, update the `icon` URL in `hacs.json` (and any `raw.githubusercontent.com` links) so they match your owner, repository name, and default branch.
-
----
-
 ## Issues & contributions
 
 Bug reports and pull requests are welcome: [Issues](https://github.com/catatonicChimp/ha_transport_victoria/issues).
