@@ -1,20 +1,53 @@
-# --- HA dev runtime (Podman volume contents) ---
-dev/ha-config/.storage/
-dev/ha-config/home-assistant.log
-dev/ha-config/.HA_VERSION
-dev/ha-config/home-assistant_v2.db*
-dev/ha-config/OZW_Log.txt
-dev/ha-config/ptv_data/
+# Local Home Assistant dev (compose, HA config, GTFS data, logs)
+dev/
 
 # --- Secrets ---
 .env
+.env.local
+.env.*.local
 
 # --- Python ---
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.Python
 *.egg-info/
+.eggs/
 dist/
 build/
+*.egg
+pip-wheel-metadata/
+wheels/
 
-# --- macOS ---
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Tests & typing
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.nox/
+
+# --- macOS / Windows ---
 .DS_Store
+Thumbs.db
+*~
+
+# --- Editors ---
+.idea/
+*.swp
+*.swo
+
+# --- Claude Code (local IDE/agent config only) ---
+.claude/
+CLAUDE.md
