@@ -1,15 +1,18 @@
 {
   "domain": "transport_victoria",
   "name": "Transport Victoria",
-  "version": "0.1.0",
   "codeowners": [],
   "config_flow": true,
+  "dependencies": [
+    "http",
+    "zone"
+  ],
   "documentation": "https://github.com/ataylor/ha-transport-victoria",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/ataylor/ha-transport-victoria/issues",
-  "dependencies": ["zone", "http"],
   "requirements": [
     "gtfs-realtime-bindings==1.0.0"
-  ]
+  ],
+  "version": "0.1.0"
 }
