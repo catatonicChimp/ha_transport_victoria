@@ -19,7 +19,7 @@ from custom_components.transport_victoria.gtfs.importer import (
     import_mode_bundles,
 )
 
-_SCHEMA_PATH = Path(__file__).parents[3] / "custom_components" / "ptv" / "gtfs" / "schema.sql"
+_SCHEMA_PATH = Path(__file__).parents[3] / "custom_components" / "transport_victoria" / "gtfs" / "schema.sql"
 
 
 def _make_db(path: Path) -> sqlite3.Connection:

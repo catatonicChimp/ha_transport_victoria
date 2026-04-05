@@ -14,7 +14,7 @@ import pytest
 # Helper: build a minimal in-memory SQLite DB from our schema
 # ---------------------------------------------------------------------------
 
-_SCHEMA_PATH = Path(__file__).parents[3] / "custom_components" / "ptv" / "gtfs" / "schema.sql"
+_SCHEMA_PATH = Path(__file__).parents[3] / "custom_components" / "transport_victoria" / "gtfs" / "schema.sql"
 
 
 def _create_db(tmp_path: Path) -> Path:

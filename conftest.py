@@ -35,11 +35,20 @@ def _stub_module(name: str) -> types.ModuleType:
 # Register all HA sub-packages we need to stub
 _HA_MODULES = [
     "homeassistant",
+    "homeassistant.const",
+    "homeassistant.components",
+    "homeassistant.components.http",
+    "homeassistant.components.binary_sensor",
+    "homeassistant.components.sensor",
+    "homeassistant.components.device_tracker",
+    "homeassistant.components.device_tracker.config_entry",
     "homeassistant.config_entries",
     "homeassistant.core",
     "homeassistant.exceptions",
     "homeassistant.helpers",
     "homeassistant.helpers.aiohttp_client",
+    "homeassistant.helpers.device_registry",
+    "homeassistant.helpers.entity_platform",
     "homeassistant.helpers.event",
     "homeassistant.helpers.selector",
     "homeassistant.helpers.update_coordinator",
@@ -65,6 +74,7 @@ _ce.OptionsFlow = _Stub  # type: ignore[attr-defined]
 
 _core = sys.modules["homeassistant.core"]
 _core.HomeAssistant = _Stub  # type: ignore[attr-defined]
+_core.callback = lambda fn: fn  # type: ignore[attr-defined]
 
 _exc = sys.modules["homeassistant.exceptions"]
 _exc.ConfigEntryAuthFailed = Exception  # type: ignore[attr-defined]
@@ -77,6 +87,15 @@ class _DataUpdateCoordinator:
 _coord = sys.modules["homeassistant.helpers.update_coordinator"]
 _coord.DataUpdateCoordinator = _DataUpdateCoordinator  # type: ignore[attr-defined]
 _coord.UpdateFailed = Exception  # type: ignore[attr-defined]
+class _CoordinatorEntityBase:
+    """Distinct base for CoordinatorEntity (must not alias TrackerEntity)."""
+
+    @classmethod
+    def __class_getitem__(cls, item):
+        return cls
+
+
+_coord.CoordinatorEntity = _CoordinatorEntityBase  # type: ignore[attr-defined]
 
 _aio = sys.modules["aiohttp"]
 _aio.ClientSession = _Stub  # type: ignore[attr-defined]
@@ -88,3 +107,41 @@ _vol = sys.modules["voluptuous"]
 _vol.Schema = _Stub  # type: ignore[attr-defined]
 _vol.Required = _Stub  # type: ignore[attr-defined]
 _vol.Optional = _Stub  # type: ignore[attr-defined]
+
+_http = sys.modules["homeassistant.components.http"]
+_http.StaticPathConfig = _Stub  # type: ignore[attr-defined]
+
+_dt = sys.modules["homeassistant.util"]
+_dt.dt = types.SimpleNamespace(  # type: ignore[attr-defined]
+    as_local=lambda x: x,
+    utcnow=lambda: __import__("datetime").datetime.now(__import__("datetime").timezone.utc),
+)
+
+_bs = sys.modules["homeassistant.components.binary_sensor"]
+_bs.BinarySensorDeviceClass = _Stub  # type: ignore[attr-defined]
+_bs.BinarySensorEntity = _Stub  # type: ignore[attr-defined]
+
+_se = sys.modules["homeassistant.components.sensor"]
+_se.SensorDeviceClass = _Stub  # type: ignore[attr-defined]
+_se.SensorEntity = _Stub  # type: ignore[attr-defined]
+
+_const = sys.modules["homeassistant.const"]
+_const.EntityCategory = _Stub  # type: ignore[attr-defined]
+
+_dt_reg = sys.modules["homeassistant.helpers.device_registry"]
+_dt_reg.DeviceInfo = _Stub  # type: ignore[attr-defined]
+
+_dt_tr = sys.modules["homeassistant.components.device_tracker"]
+_dt_tr.SourceType = types.SimpleNamespace(GPS=object())  # type: ignore[attr-defined]
+
+class _TrackerEntityBase:
+    """Distinct from _Stub so multi-inheritance in device_tracker does not collapse."""
+
+_dt_tr_ce = sys.modules["homeassistant.components.device_tracker.config_entry"]
+_dt_tr_ce.TrackerEntity = _TrackerEntityBase  # type: ignore[attr-defined]
+
+_aio_client = sys.modules["homeassistant.helpers.aiohttp_client"]
+_aio_client.async_get_clientsession = lambda *a, **k: None  # type: ignore[attr-defined]
+
+_evt = sys.modules["homeassistant.helpers.event"]
+_evt.async_track_time_interval = lambda *a, **k: lambda: None  # type: ignore[attr-defined]
