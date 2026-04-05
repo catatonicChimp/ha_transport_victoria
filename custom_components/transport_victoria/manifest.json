@@ -7,10 +7,10 @@
     "http",
     "zone"
   ],
-  "documentation": "https://github.com/ataylor/ha-transport-victoria",
+  "documentation": "https://github.com/catatonicChimp/ha_transport_victoria",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/ataylor/ha-transport-victoria/issues",
+  "issue_tracker": "https://github.com/catatonicChimp/ha_transport_victoria/issues",
   "requirements": [
     "gtfs-realtime-bindings==1.0.0"
   ],

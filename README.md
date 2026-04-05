@@ -1,8 +1,8 @@
 # Transport Victoria for Home Assistant
 
-[![Tests](https://img.shields.io/github/actions/workflow/status/ataylor/ha-transport-victoria/tests.yaml?branch=main&label=tests&logo=github)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/tests.yaml)
-[![HACS](https://img.shields.io/github/actions/workflow/status/ataylor/ha-transport-victoria/hacs.yaml?branch=main&label=HACS&logo=github)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/hacs.yaml)
-[![Hassfest](https://img.shields.io/github/actions/workflow/status/ataylor/ha-transport-victoria/hassfest.yaml?branch=main&label=hassfest&logo=github)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/hassfest.yaml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/catatonicChimp/ha_transport_victoria/tests.yaml?branch=main&label=tests&logo=github)](https://github.com/catatonicChimp/ha_transport_victoria/actions/workflows/tests.yaml)
+[![HACS](https://img.shields.io/github/actions/workflow/status/catatonicChimp/ha_transport_victoria/hacs.yaml?branch=main&label=HACS&logo=github)](https://github.com/catatonicChimp/ha_transport_victoria/actions/workflows/hacs.yaml)
+[![Hassfest](https://img.shields.io/github/actions/workflow/status/catatonicChimp/ha_transport_victoria/hassfest.yaml?branch=main&label=hassfest&logo=github)](https://github.com/catatonicChimp/ha_transport_victoria/actions/workflows/hassfest.yaml)
 
 A [Home Assistant](https://www.home-assistant.io/) custom integration for **[Transport Victoria](https://www.transport.vic.gov.au/)** data published on the **[Transport Victoria Open Data Portal](https://opendata.transport.vic.gov.au/)** (GTFS schedule and GTFS Realtime). It shows upcoming departures at a chosen stop (metro trains, trams, buses, regional buses, V/Line) and merges **GTFS schedule** data with **GTFS Realtime** delays and service alerts.
 
@@ -135,7 +135,6 @@ tests/                                    # pytest suite
 .github/workflows/                       # CI: tests, HACS, hassfest
 compose.yaml                              # local HA dev service
 scripts/dev.sh                            # Podman-focused dev helpers
-CLAUDE.md                                 # maintainer / agent context (architecture notes)
 ```
 
 ---
@@ -152,7 +151,7 @@ If you fork or rename the repo, update the `icon` URL in `hacs.json` (and any `r
 
 ## Issues & contributions
 
-Bug reports and pull requests are welcome: [Issues](https://github.com/ataylor/ha-transport-victoria/issues).
+Bug reports and pull requests are welcome: [Issues](https://github.com/catatonicChimp/ha_transport_victoria/issues).
 
 ---
 
