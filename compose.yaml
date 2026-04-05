@@ -1,0 +1,12 @@
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: ptv-ha-dev
+    volumes:
+      # HA config dir — persists UI settings, integrations, .storage, etc.
+      - ./dev/ha-config:/config
+      # Mount our component read-only on top; changes are picked up on HA restart
+      - ./custom_components/transport_victoria:/config/custom_components/transport_victoria:ro
+    ports:
+      - "8123:8123"
+    restart: unless-stopped

@@ -1,0 +1,155 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PTV Open Data Subscription Key",
+        "description": "Enter your PTV Open Data **subscription key**.\n\nTo get one:\n1. Register at [opendata.transport.vic.gov.au]({portal_url})\n2. Go to **My Account → Subscription Keys**\n3. Copy the key shown there\n\n⚠️ Do **not** use the token from *Data Platform API Tokens* — that is a different system and will be rejected.",
+        "data": {
+          "api_key": "Subscription Key"
+        }
+      },
+      "downloading": {
+        "title": "Preparing Timetable Data",
+        "description": "Downloading the Transport Victoria timetable (~230 MB) and building the local database. This can take **1–10 minutes** depending on your connection and hardware.\n\nThis only happens once — future setups reuse the cached data.\n\nThis screen will advance automatically when everything is ready."
+      },
+      "importing": {
+        "title": "Preparing Timetable Data",
+        "description": "Finishing up the timetable database. This screen will advance automatically."
+      },
+      "mode": {
+        "title": "Select Transport Mode",
+        "description": "Choose the type of service you want to track.",
+        "data": {
+          "mode": "Mode"
+        }
+      },
+      "stop": {
+        "title": "Select Origin Stop",
+        "description": "Find a **{mode}** stop to watch.",
+        "data": {
+          "stop_method": "Find stop by",
+          "query": "Search stops",
+          "location": "Pick location",
+          "stop_id": "Select stop"
+        }
+      },
+      "dest": {
+        "title": "Select Destination",
+        "description": "Choose where you want to go from **{stop_name}**.\n\n**All destinations** is recommended — it shows all departures regardless of direction and handles City Loop direction changes automatically.",
+        "data": {
+          "destination_choice": "Destination",
+          "dest_query": "Search destination stops",
+          "destination_stop_id": "Select destination"
+        }
+      },
+      "confirm": {
+        "title": "Name This Watch",
+        "description": "Tracking **{mode}** from **{stop_name}** to **{destination}**.\n\n{disruption}{city_loop_note}",
+        "data": {
+          "watch_name": "Name"
+        }
+      },
+      "entry_type": {
+        "title": "What would you like to add?",
+        "data": {
+          "entry_type": "Type"
+        }
+      },
+      "vehicle_tracker": {
+        "title": "Vehicle Tracker — Select Station",
+        "description": "Choose the departure watch (station) this vehicle tracker should follow.",
+        "data": {
+          "parent_entry_id": "Departure Station"
+        }
+      },
+      "vehicle_tracker_name": {
+        "title": "Vehicle Tracker — Name",
+        "description": "Name this vehicle tracker. It will follow the next vehicle departing from **{station_name}**.",
+        "data": {
+          "watch_name": "Name"
+        }
+      },
+      "route_tracker_mode": {
+        "title": "Route Tracker — Select Mode",
+        "description": "Choose the transport mode for the route you want to track.",
+        "data": {
+          "mode": "Mode"
+        }
+      },
+      "route_tracker_route": {
+        "title": "Route Tracker — Select Route",
+        "description": "Choose the line or route to track. All vehicles currently running on this route will be shown.",
+        "data": {
+          "route_search": "Search routes",
+          "route_id_select": "Select route"
+        }
+      },
+      "route_tracker_filter": {
+        "title": "Route Tracker — Filter by Location?",
+        "description": "You can optionally filter to only show vehicles near a specific stop — useful for busy routes with many services.",
+        "data": {
+          "filter_mode": "Vehicle filter"
+        }
+      },
+      "route_tracker_stop": {
+        "title": "Route Tracker — Reference Stop",
+        "description": "Choose a stop to use as the centre of your proximity filter.",
+        "data": {
+          "ref_stop_search": "Search stops",
+          "ref_stop_id": "Select stop",
+          "ref_stop_name": "Stop name"
+        }
+      },
+      "route_tracker_proximity": {
+        "title": "Route Tracker — Proximity & Vehicle Count",
+        "description": "Set how close a vehicle must be to the reference stop, and how many tracker slots to create.",
+        "data": {
+          "proximity_radius": "Show vehicles within",
+          "max_vehicles": "Number of vehicle slots"
+        }
+      },
+      "route_tracker_confirm": {
+        "title": "Route Tracker — Name",
+        "description": "Tracking **{route_name}**.",
+        "data": {
+          "watch_name": "Tracker name",
+          "max_vehicles": "Number of vehicle slots"
+        }
+      }
+    },
+    "error": {
+      "api_key_required": "Subscription key cannot be empty.",
+      "invalid_auth": "Invalid subscription key. Check your key at opendata.transport.vic.gov.au → My Account → Subscription Keys. Note: Data Platform API Tokens will not work here.",
+      "cannot_connect": "Unable to reach the PTV API. Check your network connection and try again.",
+      "db_not_ready": "Timetable data is still being prepared. Please wait a minute and try again.",
+      "search_too_short": "Please enter at least 2 characters.",
+      "no_stops_found": "No stops found. Try a different search term.",
+      "no_home_zone": "No Home zone configured in Home Assistant. Set your home location in Settings → System → General.",
+      "no_stops_near_location": "No stops found within 500 m of the selected location. Try zooming in closer.",
+      "location_required": "Please pick a location on the map.",
+      "no_direct_service": "No direct service found between these two stops. Try a different destination or use All destinations.",
+      "invalid_route": "Route not found. Please select a route from the list.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This watch is already configured.",
+      "no_routes_found": "No routes found for this transport mode. Make sure the timetable data has been imported.",
+      "no_watches": "No departure watches found. Add a Station Departures entry first, then add a Vehicle Tracker."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Watch Options",
+        "description": "Adjust settings for this watch.",
+        "data": {
+          "watch_name": "Name",
+          "poll_interval": "Update interval",
+          "realtime_enabled": "Enable real-time data",
+          "departure_count": "Number of next services",
+          "max_vehicles": "Number of vehicles to track"
+        }
+      }
+    }
+  }
+}

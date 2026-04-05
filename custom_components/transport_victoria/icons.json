@@ -1,0 +1,37 @@
+{
+  "entity": {
+    "sensor": {
+      "departure_1": {
+        "default": "mdi:train"
+      },
+      "departure_2": {
+        "default": "mdi:train"
+      },
+      "departure_3": {
+        "default": "mdi:train"
+      },
+      "realtime_status": {
+        "default": "mdi:cloud-check",
+        "state": {
+          "OK": "mdi:cloud-check",
+          "degraded": "mdi:cloud-alert",
+          "offline": "mdi:cloud-off"
+        }
+      }
+    },
+    "binary_sensor": {
+      "disruption": {
+        "default": "mdi:alert-circle",
+        "state": {
+          "on": "mdi:alert-circle",
+          "off": "mdi:check-circle"
+        }
+      }
+    },
+    "device_tracker": {
+      "vehicle": {
+        "default": "mdi:train"
+      }
+    }
+  }
+}
