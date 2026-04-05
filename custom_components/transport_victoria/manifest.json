@@ -2,7 +2,6 @@
   "domain": "transport_victoria",
   "name": "Transport Victoria",
   "version": "0.1.0",
-  "homeassistant": "2026.1.0",
   "codeowners": [],
   "config_flow": true,
   "documentation": "https://github.com/ataylor/ha-transport-victoria",

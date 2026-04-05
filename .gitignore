@@ -51,3 +51,4 @@ Thumbs.db
 # --- Claude Code (local IDE/agent config only) ---
 .claude/
 CLAUDE.md
+*.skill
