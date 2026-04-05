@@ -74,30 +74,30 @@ class TestSecondsToTimeStr:
 
 class TestServiceDayForTime:
     def test_morning_is_today(self):
-        now = datetime(2024, 3, 15, 8, 30, 0)  # 08:30 Friday
+        now = datetime(2026, 3, 13, 8, 30, 0)  # 08:30 Friday
         service_date, now_seconds = service_day_for_time(now)
-        assert service_date == date(2024, 3, 15)
+        assert service_date == date(2026, 3, 13)
         assert now_seconds == 8 * 3600 + 30 * 60
 
     def test_just_before_cutover_is_yesterday(self):
         # 02:59 → still yesterday's service day
-        now = datetime(2024, 3, 15, 2, 59, 0)
+        now = datetime(2026, 3, 13, 2, 59, 0)
         service_date, now_seconds = service_day_for_time(now)
-        assert service_date == date(2024, 3, 14)
+        assert service_date == date(2026, 3, 12)
         # 86400 + 2*3600 + 59*60 = 86400 + 10740 = 97140
         assert now_seconds == 86400 + 2 * 3600 + 59 * 60
 
     def test_exactly_at_cutover_is_today(self):
         # 03:00 → today's service day
-        now = datetime(2024, 3, 15, 3, 0, 0)
+        now = datetime(2026, 3, 13, 3, 0, 0)
         service_date, now_seconds = service_day_for_time(now)
-        assert service_date == date(2024, 3, 15)
+        assert service_date == date(2026, 3, 13)
         assert now_seconds == 3 * 3600
 
     def test_midnight_is_yesterday(self):
-        now = datetime(2024, 3, 15, 0, 0, 0)
+        now = datetime(2026, 3, 13, 0, 0, 0)
         service_date, now_seconds = service_day_for_time(now)
-        assert service_date == date(2024, 3, 14)
+        assert service_date == date(2026, 3, 12)
         assert now_seconds == 86400
 
 
@@ -107,10 +107,10 @@ class TestServiceDayForTime:
 
 class TestServiceDateStr:
     def test_format(self):
-        assert service_date_str(date(2024, 3, 5)) == "20240305"
+        assert service_date_str(date(2026, 3, 5)) == "20260305"
 
     def test_year_boundary(self):
-        assert service_date_str(date(2024, 1, 1)) == "20240101"
+        assert service_date_str(date(2026, 1, 1)) == "20260101"
 
 
 # ---------------------------------------------------------------------------
@@ -119,13 +119,13 @@ class TestServiceDateStr:
 
 class TestDayOfWeekColumn:
     def test_monday(self):
-        assert day_of_week_column(date(2024, 3, 11)) == "monday"
+        assert day_of_week_column(date(2026, 3, 9)) == "monday"
 
     def test_friday(self):
-        assert day_of_week_column(date(2024, 3, 15)) == "friday"
+        assert day_of_week_column(date(2026, 3, 13)) == "friday"
 
     def test_sunday(self):
-        assert day_of_week_column(date(2024, 3, 17)) == "sunday"
+        assert day_of_week_column(date(2026, 3, 15)) == "sunday"
 
 
 # ---------------------------------------------------------------------------
@@ -134,14 +134,14 @@ class TestDayOfWeekColumn:
 
 class TestDepartureSecondsToDatetime:
     def test_normal_departure(self):
-        result = departure_seconds_to_datetime(date(2024, 3, 15), 8 * 3600 + 30 * 60)
-        assert result == datetime(2024, 3, 15, 8, 30, 0)
+        result = departure_seconds_to_datetime(date(2026, 3, 13), 8 * 3600 + 30 * 60)
+        assert result == datetime(2026, 3, 13, 8, 30, 0)
 
     def test_post_midnight_departure(self):
         # departure_seconds=91800 = 25*3600+30*60 → 01:30 on the next calendar day
-        result = departure_seconds_to_datetime(date(2024, 3, 15), 25 * 3600 + 30 * 60)
-        assert result == datetime(2024, 3, 16, 1, 30, 0)
+        result = departure_seconds_to_datetime(date(2026, 3, 13), 25 * 3600 + 30 * 60)
+        assert result == datetime(2026, 3, 14, 1, 30, 0)
 
     def test_midnight(self):
-        result = departure_seconds_to_datetime(date(2024, 3, 15), 0)
-        assert result == datetime(2024, 3, 15, 0, 0, 0)
+        result = departure_seconds_to_datetime(date(2026, 3, 13), 0)
+        assert result == datetime(2026, 3, 13, 0, 0, 0)

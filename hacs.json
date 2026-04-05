@@ -1,6 +1,6 @@
 {
   "name": "Transport Victoria",
-  "domain": "transport_victoria",
-  "iot_class": "cloud_polling",
-  "icon": "https://raw.githubusercontent.com/ataylor/ha-transport-victoria/main/custom_components/transport_victoria/icon.png"
+  "homeassistant": "2026.1.0",
+  "render_readme": true,
+  "country": "AU"
 }
