@@ -21,7 +21,7 @@ Schedule data is stored locally in SQLite after download; realtime feeds require
 
 ## Requirements
 
-- Home Assistant **2024.x** or newer (uses current config-entry patterns such as `runtime_data`).
+- Home Assistant **2026.1** or newer. this integration targets current APIs (`runtime_data`, config flow, etc.).
 - A **subscription key** from the [Transport Victoria Open Data Portal](https://opendata.transport.vic.gov.au/) for realtime feeds (trip updates and service alerts). Same key is sent as HTTP header `KeyID`. Under **My Account → Subscription Keys** (self-service, no approval queue).
 
 Static GTFS schedule downloads do not require a key.
