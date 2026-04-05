@@ -190,8 +190,8 @@ class PTVDepartureSensor(CoordinatorEntity[PTVDataUpdateCoordinator], SensorEnti
 class PTVDiagnosticsSensor(CoordinatorEntity[PTVDataUpdateCoordinator], SensorEntity):  # type: ignore[misc]
     """Reports realtime feed health for a PTV watch.
 
-    State: "OK" | "degraded" | "offline"
-    - OK: last trip-updates fetch succeeded
+    State: "ok" | "degraded" | "offline"
+    - ok: last trip-updates fetch succeeded
     - degraded: fetch succeeded but partial (e.g. alerts failed)
     - offline: no successful realtime fetch yet or backoff active
     """
@@ -230,7 +230,7 @@ class PTVDiagnosticsSensor(CoordinatorEntity[PTVDataUpdateCoordinator], SensorEn
             return "offline"
         if coord.last_http_error is not None:
             return "degraded"
-        return "OK"
+        return "ok"
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:

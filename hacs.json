@@ -1,7 +1,6 @@
 {
   "name": "Transport Victoria",
   "domain": "transport_victoria",
-  "documentation": "https://github.com/ataylor/ha-transport-victoria",
   "iot_class": "cloud_polling",
   "icon": "https://raw.githubusercontent.com/ataylor/ha-transport-victoria/main/custom_components/transport_victoria/icon.png"
 }

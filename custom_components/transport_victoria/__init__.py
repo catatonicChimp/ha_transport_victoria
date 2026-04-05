@@ -10,6 +10,7 @@ from pathlib import Path
 from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.event import async_track_time_interval
 
 from .const import (
@@ -32,6 +33,9 @@ from .gtfs.importer import get_imported_bundles, get_stored_zip_meta, import_mod
 from .gtfs.repository import is_mode_ready
 
 _LOGGER = logging.getLogger(__name__)
+
+# Config-flow-only integration (YAML has no keys); required because we implement async_setup.
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 # Platforms registered for departure watch entries
 _WATCH_PLATFORMS: list[str] = ["sensor", "binary_sensor"]

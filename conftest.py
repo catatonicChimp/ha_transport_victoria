@@ -14,6 +14,8 @@ from __future__ import annotations
 import sys
 import types
 
+import voluptuous as vol
+
 
 class _Stub:
     """Universal stub: callable, iterable, usable as base class, returns itself."""
@@ -46,6 +48,7 @@ _HA_MODULES = [
     "homeassistant.core",
     "homeassistant.exceptions",
     "homeassistant.helpers",
+    "homeassistant.helpers.config_validation",
     "homeassistant.helpers.aiohttp_client",
     "homeassistant.helpers.device_registry",
     "homeassistant.helpers.entity_platform",
@@ -107,6 +110,9 @@ _vol = sys.modules["voluptuous"]
 _vol.Schema = _Stub  # type: ignore[attr-defined]
 _vol.Required = _Stub  # type: ignore[attr-defined]
 _vol.Optional = _Stub  # type: ignore[attr-defined]
+
+_cv = sys.modules["homeassistant.helpers.config_validation"]
+_cv.config_entry_only_config_schema = lambda _domain: vol.Schema({})  # type: ignore[attr-defined]
 
 _http = sys.modules["homeassistant.components.http"]
 _http.StaticPathConfig = _Stub  # type: ignore[attr-defined]

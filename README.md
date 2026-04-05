@@ -1,12 +1,12 @@
 # Transport Victoria for Home Assistant
 
-[![Tests](https://github.com/ataylor/ha-transport-victoria/actions/workflows/tests.yaml/badge.svg)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/tests.yaml)
-[![HACS](https://github.com/ataylor/ha-transport-victoria/actions/workflows/hacs.yaml/badge.svg)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/hacs.yaml)
-[![Hassfest](https://github.com/ataylor/ha-transport-victoria/actions/workflows/hassfest.yaml/badge.svg)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/hassfest.yaml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/ataylor/ha-transport-victoria/tests.yaml?branch=main&label=tests&logo=github)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/tests.yaml)
+[![HACS](https://img.shields.io/github/actions/workflow/status/ataylor/ha-transport-victoria/hacs.yaml?branch=main&label=HACS&logo=github)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/hacs.yaml)
+[![Hassfest](https://img.shields.io/github/actions/workflow/status/ataylor/ha-transport-victoria/hassfest.yaml?branch=main&label=hassfest&logo=github)](https://github.com/ataylor/ha-transport-victoria/actions/workflows/hassfest.yaml)
 
-A [Home Assistant](https://www.home-assistant.io/) custom integration for **Public Transport Victoria (PTV)** open data. It shows upcoming departures at a chosen stop (metro trains, trams, buses, regional buses, V/Line) and merges **GTFS schedule** data with **GTFS Realtime** delays and service alerts.
+A [Home Assistant](https://www.home-assistant.io/) custom integration for **[Transport Victoria](https://www.transport.vic.gov.au/)** data published on the **[Transport Victoria Open Data Portal](https://opendata.transport.vic.gov.au/)** (GTFS schedule and GTFS Realtime). It shows upcoming departures at a chosen stop (metro trains, trams, buses, regional buses, V/Line) and merges **GTFS schedule** data with **GTFS Realtime** delays and service alerts.
 
-Schedule data is stored locally in SQLite after download; realtime feeds require a free API key from PTV Open Data.
+Schedule data is stored locally in SQLite after download; realtime feeds require a free API key from the [open data portal](https://opendata.transport.vic.gov.au/).
 
 ---
 
@@ -15,14 +15,14 @@ Schedule data is stored locally in SQLite after download; realtime feeds require
 - **Departure sensors** — next departures with scheduled time, delay, route, headsign, platform, and trip id where available.
 - **Disruption sensor** — binary sensor when service alerts apply to your watch.
 - **Config flow** — pick mode, find a stop by name, distance from home, or map location; optional specific destination routing.
-- **Rate limiting** — shared async limiter so multiple watches stay within PTV’s API limits (24 requests / 60 seconds across all realtime endpoints).
+- **Rate limiting** — shared async limiter so multiple watches stay within the [open data API](https://opendata.transport.vic.gov.au/) limits (24 requests / 60 seconds across all realtime endpoints).
 
 ---
 
 ## Requirements
 
 - Home Assistant **2024.x** or newer (uses current config-entry patterns such as `runtime_data`).
-- A **PTV Open Data** subscription key for realtime feeds (trip updates and service alerts). Same key used as HTTP header `KeyID`. [Get a key](https://opendata.transport.vic.gov.au) under **My Account → Subscription Keys** (self-service, no approval queue).
+- A **subscription key** from the [Transport Victoria Open Data Portal](https://opendata.transport.vic.gov.au/) for realtime feeds (trip updates and service alerts). Same key is sent as HTTP header `KeyID`. Under **My Account → Subscription Keys** (self-service, no approval queue).
 
 Static GTFS schedule downloads do not require a key.
 
@@ -84,13 +84,15 @@ Exact entity ids follow Home Assistant’s naming; see **Developer tools → Sta
 
 ## Data sources
 
+All datasets are published by Transport Victoria on the **[open data portal](https://opendata.transport.vic.gov.au/)**.
+
 | Data | Source |
 |------|--------|
 | Static timetables | [GTFS Schedule](https://opendata.transport.vic.gov.au/dataset/gtfs-schedule) (ZIP, updated regularly) |
 | Delays & cancellations | GTFS Realtime trip updates |
 | Disruptions | GTFS Realtime service alerts |
 
-Dataset terms: **CC BY 4.0** where applicable — see [data.vic.gov.au / Transport](https://opendata.transport.vic.gov.au/organization/public-transport) for current licence text.
+Dataset terms: **CC BY 4.0** where applicable — see the portal’s [Public Transport organisation](https://opendata.transport.vic.gov.au/organization/public-transport) for current licence text.
 
 This integration is **not** affiliated with Transport Victoria or the Victorian Government.
 
@@ -135,6 +137,16 @@ compose.yaml                              # local HA dev service
 scripts/dev.sh                            # Podman-focused dev helpers
 CLAUDE.md                                 # maintainer / agent context (architecture notes)
 ```
+
+---
+
+## HACS & GitHub metadata
+
+[HACS validation](https://hacs.xyz/docs/publish/include#check-repository) expects the GitHub repository itself to have a **short description** and **topics** (set under **Settings → General** on GitHub — they cannot be committed as files). Without them, the HACS workflow reports validation failures even when the integration code is fine.
+
+Suggested topics: `home-assistant`, `homeassistant`, `hacs`, `integration`, `transport-victoria`, `melbourne`, `gtfs`.
+
+If you fork or rename the repo, update the `icon` URL in `hacs.json` (and any `raw.githubusercontent.com` links) so they match your owner, repository name, and default branch.
 
 ---
 

@@ -13,7 +13,7 @@
       "realtime_status": {
         "default": "mdi:cloud-check",
         "state": {
-          "OK": "mdi:cloud-check",
+          "ok": "mdi:cloud-check",
           "degraded": "mdi:cloud-alert",
           "offline": "mdi:cloud-off"
         }
