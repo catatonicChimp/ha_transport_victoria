@@ -148,3 +148,5 @@ Bug reports and pull requests are welcome: [Issues](https://github.com/catatonic
 ## Acknowledgements
 
 GTFS and GTFS Realtime are industry-standard formats; this integration uses the **gtfs-realtime-bindings** Python package to decode protobuf feeds.
+
+Thanks to **[bremor/public_transport_victoria](https://github.com/bremor/public_transport_victoria)** for the earlier Home Assistant custom component that brought PTV departures into HA. That project uses the **PTV Timetable API** (developer id + API key). This integration is a separate design: it uses **Transport Victoria open data** (GTFS schedule + GTFS Realtime) instead, but the idea of monitoring Victorian public transport in Home Assistant owes a debt to that work.
