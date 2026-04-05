@@ -1,0 +1,20 @@
+# --- HA dev runtime (Podman volume contents) ---
+dev/ha-config/.storage/
+dev/ha-config/home-assistant.log
+dev/ha-config/.HA_VERSION
+dev/ha-config/home-assistant_v2.db*
+dev/ha-config/OZW_Log.txt
+dev/ha-config/ptv_data/
+
+# --- Secrets ---
+.env
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# --- macOS ---
+.DS_Store
